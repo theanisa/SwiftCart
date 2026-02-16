@@ -1,0 +1,8 @@
+.navbar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+}
+.navbar-start { justify-self: start; }
+.navbar-center { justify-self: center; }
+.navbar-end { justify-self: end; }
