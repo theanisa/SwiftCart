@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <!-- daisyui, tailwind cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- poppins google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="Styles/style.css">
+
+</head>
+
+<body>
+    <!-- NAVBAR DESIGN -->
+    <div class="navbar bg-base-100 shadow-sm">
+        <!-- navbar logo -->
+        <div class="flex navbar-start">
+            <a class="btn btn-ghost text-xl font-bold text-purple-600">SwiftCart</a>
+        </div>
+        <!--navbar center menu -->
+        <div class="navbar-center hidden lg:flex justify-center">
+            <ul class="menu menu-horizontal px-1">
+                <li class="hover:text-purple-600"><a href="index.html">Home</a></li>
+                <li class="hover:text-purple-600"><a>Products</a></li>
+                <li class="hover:text-purple-600"><a>About</a></li>
+                <li class="hover:text-purple-600"><a>Contact</a></li>
+            </ul>
+        </div>
+        <!-- navbar cart section -->
+        <div class="flex-none navbar-end">
+            <!-- mobile hamburger to the right -->
+            <div class="  menu-vertical lg:hidden mr-2">
+                <div class="dropdown dropdown-end">
+                    <label tabindex="0" class="btn btn-ghost btn-circle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </label>
+                    <ul tabindex="0"
+                        class="menu menu-vertical dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-56 z-50">
+                        <li class="hover:text-purple-600"><a href="index.html">Home</a></li>
+                        <li class="hover:text-purple-600"><a>Products</a></li>
+                        <li class="hover:text-purple-600"><a>About</a></li>
+                        <li class="hover:text-purple-600"><a>Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="dropdown dropdown-end ">
+                <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+                    <div class="indicator">
+                        <span class="indicator-item badge badge-primary" data-cart-count style="display: none;">0</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                    </div>
+                </div>
+                <div tabindex="0" class="card card-compact dropdown-content bg-base-100 z-1 mt-3 w-52 shadow">
+                    <div class="card-body">
+                        <span class="text-lg font-bold"><span data-items-count>0 Items</span></span>
+                        <span class="text-info">Subtotal: <span data-cart-subtotal>$0.00</span></span>
+                        <div class="card-actions">
+                            <button class="btn btn-primary btn-block" onclick="toggleCartModal()">View cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- all products -->
+    <section class="py-12 bg-white justify-center">
+        <!-- Products Header -->
+        <div class="max-w-6xl mx-auto px-6 mb-12">
+            <h3 class="text-3xl font-bold text-center mb-8">Our Products</h3>
+            <div class="flex flex-wrap justify-center gap-4 mb-8" data-category-buttons>
+                <!-- Categories will be loaded dynamically from API -->
+            </div>
+        </div>
+        <!-- Products will be loaded dynamically from API -->
+        <div data-products-section></div>
+    </section>
+
+    <!-- Details Modal will be created dynamically via JavaScript -->
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md max-h-96 flex flex-col">
+            <!-- Header -->
+            <div class="flex justify-between items-center p-4 border-b">
+                <h3 class="text-xl font-bold text-purple-600">Shopping Cart</h3>
+                <button onclick="toggleCartModal()" class="btn btn-sm btn-ghost">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Cart Items -->
+            <div class="flex-1 overflow-y-auto p-4">
+                <div data-cart-items>
+                    <p class="text-center text-gray-500 py-8">Your cart is empty</p>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="border-t p-4 space-y-3">
+                <div class="flex justify-between items-center text-lg font-bold">
+                    <span>Total:</span>
+                    <span class="text-2xl text-purple-600" data-cart-total>$0.00</span>
+                </div>
+                <button class="btn btn-primary w-full">
+                    <i class="fas fa-check-circle mr-2"></i> Proceed to Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script -->
+    <script src="script.js"></script>
+</body>
+
+</html>
