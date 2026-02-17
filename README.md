@@ -1,9 +1,8 @@
 # JavaScript সংক্ষিপ্ত নোট
 
 **Project:** JavaScript Basics & Core Concepts  
-**Author:** Anisa Binte Faruk
 **Description:** এই প্রোজেক্টে JavaScript এর কিছু গুরুত্বপূর্ণ কনসেপ্ট সহজ বাংলায় ব্যাখ্যা করা হয়েছে। এটি মূলত লার্নিং এবং রেফারেন্সের জন্য তৈরি।  
-
+**Author:** Anisa Binte Faruk
 ---
 
 ## ১) Null এবং Undefined এর পার্থক্য
